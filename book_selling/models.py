@@ -1,10 +1,8 @@
 import datetime
-from collections import OrderedDict
 
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
 from BookSelling.settings import USER_CREDENTIALS_MAX_LENGTH, TITLE_MAX_LENGHT, MAX_PRICE_FOR_BOOKS, \
     TEL_NUMBER_LENGHT_MAX
 from BookSelling.validators import validate_phone_number
