@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from BookSelling.settings import USER_CREDENTIALS_MAX_LENGTH, TITLE_MAX_LENGHT, MAX_PRICE_FOR_BOOKS, TEL_NUMBER_LENGHT
+from BookSelling.settings import USER_CREDENTIALS_MAX_LENGTH, TITLE_MAX_LENGHT, MAX_PRICE_FOR_BOOKS, \
+    TEL_NUMBER_LENGHT_MAX
+from BookSelling.validators import validate_phone_number
 
 
 class Author(models.Model):
@@ -38,8 +40,9 @@ class Book(models.Model):
 class PurchaseRequest(models.Model):
     book = models.ForeignKey('Book',
                              related_name="book",
-                             verbose_name="Книга", on_delete=models.CASCADE, null=True)  # better to realize as many to many
+                             verbose_name="Книга", on_delete=models.CASCADE,
+                             null=True)  # better to realize as many to many
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
-    tel_number = models.CharField(max_length=TEL_NUMBER_LENGHT, blank=False)
+    tel_number = models.CharField(max_length=TEL_NUMBER_LENGHT_MAX, blank=False, validators=[validate_phone_number])
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     request_date = models.DateField(default=datetime.date.today)

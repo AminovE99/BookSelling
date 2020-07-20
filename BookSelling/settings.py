@@ -121,6 +121,7 @@ STATIC_URL = '/static/'
 
 # Django Rest Framework configuration
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
@@ -155,7 +156,8 @@ DJOSER = {
 USER_CREDENTIALS_MAX_LENGTH = 255
 TITLE_MAX_LENGHT = 50
 MAX_PRICE_FOR_BOOKS = 100000
-TEL_NUMBER_LENGHT = 11
+TEL_NUMBER_LENGHT_MAX = 12
+TEL_NUMBER_LENGHT_MIN = 11
 
 # Email configuration
 

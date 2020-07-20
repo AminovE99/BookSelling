@@ -17,7 +17,8 @@ class AuthorSerializer(ModelSerializer):
         return obj.get_fullname()
 
     def get_books(self, obj):
-        return obj.get_books()
+        books = obj.get_books()
+        return {'titles': books, 'book_count': len(books)},
 
 
 class RawAuthorSerializer(ModelSerializer):
