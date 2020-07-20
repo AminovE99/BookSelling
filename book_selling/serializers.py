@@ -6,11 +6,18 @@ from book_selling.models import Book, Author
 
 
 class AuthorSerializer(ModelSerializer):
-    books = serializers.SerializerMethodField('get_books')
+    fullname = serializers.SerializerMethodField()
+    books = serializers.SerializerMethodField()
 
     class Meta:
         model = Author
-        fields = ('fio', 'books')
+        fields = ('fullname', 'books')
+
+    def get_fullname(self, obj):
+        return obj.get_fullname()
+
+    def get_books(self, obj):
+        return obj.get_books()
 
 
 class RawAuthorSerializer(ModelSerializer):

@@ -1,4 +1,5 @@
 import datetime
+from collections import OrderedDict
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -17,12 +18,13 @@ class Author(models.Model):
 
     def get_fullname(self):
         if self.middle_name:
-            return self.first_name + self.middle_name + self.last_name
+            return '{} {} {}'.format(self.first_name, self.last_name, self.middle_name)
         else:
-            return self.first_name + self.last_name
+            return '{} {}'.format(self.first_name, self.last_name)
 
     def get_books(self):
-        return Book.objects.filter(authors=self)
+        titles = Book.objects.filter(authors=self).values('title')
+        return list(titles)
 
 
 class Book(models.Model):

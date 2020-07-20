@@ -16,3 +16,4 @@ def send_superuser_emails(title, body):
         connection=connection,
     )
     email.send()
+
