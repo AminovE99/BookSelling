@@ -36,6 +36,16 @@ python manage.py runserver
 This service use [Joser](https://djoser.readthedocs.io/en/latest/getting_started.html#available-endpoints)
 authentication system and provide ability to log in to system by JWT Token.
 
+After server was uped go to `/auth/users/` url and register new user by sending post request:
+```bash
+$ curl -X POST {YOUR_ADDRESS}/auth/users/ --data 'username=test_user&password=password_example'
+```
+After that try to log in:
+```bash
+curl -X POST {YOUR_ADDRESS}/auth/jwt/create/ --data 'username=test_user&password=password_example'
+```
+Now you have Authorization Token to call some private requests. (use `access` token for it)
+
 ## :white_check_mark: Run tests
 
 ```sh
